@@ -2,18 +2,13 @@ package com.example.identity_server.dto;
 
 import java.time.LocalDate;
 
-public class UserCreationRequest {
-    private String username;
+public class UserUpdateRequest {
+    
     private String password;
     private String fristname;
     private String latename;
     private LocalDate dob;
-    public String getUsername() {
-        return username;
-    }
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    
     public String getPassword() {
         return password;
     }
