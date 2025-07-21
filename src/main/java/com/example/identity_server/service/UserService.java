@@ -17,6 +17,7 @@ public class UserService {
 
     public user creatUser(UserCreationRequest request){
         user uSer = new user();
+        if (userReponsitory.existsByusername(request.getUsername()))throw new RuntimeException("username đã tồn tại");
         uSer.setUsername(request.getUsername());
         uSer.setPassword(request.getPassword());
         uSer.setFristname(request.getFristname());

@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.example.identity_server.entity.user;
 @Repository
 public interface UserReponsitory extends JpaRepository<user,String>{ 
-
+    boolean existsByusername(String username) ;
     
 }
