@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.example.identity_server.dto.UserCreationRequest;
 import com.example.identity_server.dto.UserUpdateRequest;
 import com.example.identity_server.entity.user;
+import com.example.identity_server.exception.AppException;
+import com.example.identity_server.exception.ErrorCode;
 import com.example.identity_server.reponsitory.UserReponsitory;
 
 @Service
@@ -17,7 +19,8 @@ public class UserService {
 
     public user creatUser(UserCreationRequest request){
         user uSer = new user();
-        if (userReponsitory.existsByusername(request.getUsername()))throw new RuntimeException("username đã tồn tại");
+        if (userReponsitory.existsByusername(request.getUsername()))throw new AppException(ErrorCode.USER_EXISTED);
+        
         uSer.setUsername(request.getUsername());
         uSer.setPassword(request.getPassword());
         uSer.setFristname(request.getFristname());

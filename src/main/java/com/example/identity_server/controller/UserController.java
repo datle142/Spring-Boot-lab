@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.identity_server.dto.ApiResponse;
 import com.example.identity_server.dto.UserCreationRequest;
 import com.example.identity_server.dto.UserUpdateRequest;
 import com.example.identity_server.entity.user;
@@ -30,8 +31,11 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    user createUser(@RequestBody @Valid UserCreationRequest request){
-        return userService.creatUser(request);
+    ApiResponse<user> createUser(@RequestBody @Valid UserCreationRequest request){
+        ApiResponse<user> apiResponse = new ApiResponse<>();
+        
+        apiResponse.setResult(userService.creatUser(request));
+        return apiResponse;
     }
 
     @GetMapping
