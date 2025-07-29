@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.identity_server.dto.ApiResponse;
-import com.example.identity_server.dto.UserCreationRequest;
-import com.example.identity_server.dto.UserUpdateRequest;
+import com.example.identity_server.dto.request.ApiResponse;
+import com.example.identity_server.dto.request.UserCreationRequest;
+import com.example.identity_server.dto.request.UserUpdateRequest;
+import com.example.identity_server.dto.response.UserResponse;
 import com.example.identity_server.entity.user;
 import com.example.identity_server.service.UserService;
 
@@ -44,12 +45,12 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    user getUser(@PathVariable("userId") String userId){
+    UserResponse getUser(@PathVariable("userId") String userId){
         return userService.getUser(userId);
     }
     
     @PutMapping("/{userId}")
-    user updateUser(@PathVariable String userId,@RequestBody UserUpdateRequest request){
+    UserResponse updateUser(@PathVariable String userId,@RequestBody UserUpdateRequest request){
         return userService.updateUser(userId, request);
     }
 

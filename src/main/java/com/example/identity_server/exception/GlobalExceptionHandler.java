@@ -4,7 +4,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import com.example.identity_server.dto.ApiResponse;
+
+import com.example.identity_server.dto.request.ApiResponse;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
