@@ -3,6 +3,8 @@ package com.example.identity_server.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.identity_server.dto.request.UserCreationRequest;
@@ -29,7 +31,8 @@ public class UserService {
         if (userReponsitory.existsByusername(request.getUsername()))throw new AppException(ErrorCode.USER_EXISTED);
 
         user uSer = userMapper.toUser(request);
-
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+        uSer.setPassword(passwordEncoder.encode(request.getPassword()));
         return userReponsitory.save(uSer);
     }
 
